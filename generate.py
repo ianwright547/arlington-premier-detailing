@@ -617,6 +617,10 @@ def write_extras():
     lines += ["", "## Pages"] + [f"- [{t}]({SITE_URL}{p})" for p, t, _ in pages]
     with open(os.path.join(OUT, "llms.txt"), "w", encoding="utf-8", newline="\n") as f:
         f.write("\n".join(lines) + "\n")
+    manifest = {"name": NAME, "short_name": SHORT, "start_url": "/", "display": "standalone", "background_color": "#05080d", "theme_color": "#05080d",
+                "icons": [{"src": "/assets/icon-192.png", "sizes": "192x192", "type": "image/png"}, {"src": "/assets/apple-touch-icon.png", "sizes": "180x180", "type": "image/png"}]}
+    with open(os.path.join(OUT, "site.webmanifest"), "w", encoding="utf-8", newline="\n") as f:
+        json.dump(manifest, f, indent=2)
     nf = re.sub(r'<link rel="canonical"[^>]*>\n', "", head("/404/", "Page Not Found | Arlington Premier", "That page does not exist.", [], image="og/home.jpg")).replace(
         'content="index, follow, max-image-preview:large"', 'content="noindex"') + nav() + f"""<main><section class="section nf"><h1 class="section-heading">Page Not Found</h1>
 <p class="section-sub">That page does not exist. Try our <a href="/services/">services</a> or call {PHONE_DISPLAY}.</p></section></main>""" + footer()
