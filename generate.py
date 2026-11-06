@@ -4,7 +4,7 @@
 Edit the CONFIG block or the content in content.py, then run: python generate.py
 Every page, sitemap.xml, robots.txt and llms.txt is rebuilt from this file.
 """
-import json, os, shutil, html
+import json, os, shutil, html, re
 from content import PACKAGES, ADDONS, SERVICES, AREAS, POSTS, HOME_FAQ
 
 # ---------------- CONFIG: change a value here and every page follows ----------
@@ -26,6 +26,7 @@ MAPS_URL = f"https://www.google.com/maps/search/?api=1&query={MAPS_Q}"
 MAPS_EMBED = f"https://www.google.com/maps?q={MAPS_Q}&hl=en&z=14&output=embed"
 LASTMOD = "2026-11-06"
 ASSET_V = "1"
+PHOTO_V = "20261106-native"
 # ------------------------------------------------------------------------------
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -284,6 +285,8 @@ def write(path, title, desc, schema, body, og_type="website"):
     title = title.strip()
     pages.append((path, title, desc))
     full = head(path, title, desc, schema, og_type) + nav() + body + footer()
+    full = re.sub(r'(/assets/img/[^"<> ]+\.jpg)(?=")', lambda m: f"{m[1]}?v={PHOTO_V}", full)
+    full = full.replace("/assets/og-card-v1.jpg", f"/assets/og-card-v1.jpg?v={PHOTO_V}")
     fp = os.path.join(OUT, path.strip("/"), "index.html") if path != "/" else os.path.join(OUT, "index.html")
     os.makedirs(os.path.dirname(fp), exist_ok=True)
     with open(fp, "w", encoding="utf-8", newline="\n") as f:
@@ -317,7 +320,7 @@ def build_home():
     title = "Auto Detailing Arlington VA | Arlington Premier"
     desc = f"Professional auto detailing in Arlington, VA. Express cleans from $49, full details from $249. Interior, exterior and add-ons. Call {PHONE_DISPLAY}."
     cards = [
-        ("premium-full-detail", "Premium Full Detail", "polish", "Polishing black paint during a premium full auto detail in Arlington, VA"),
+        ("premium-full-detail", "Premium Full Detail", "polish", "Orbital polisher and microfiber cloth on a car hood"),
         ("exterior-detail", "Exterior Detail", "wheel", "Freshly detailed wheel and tire on a black car in Arlington, VA"),
         ("interior-detail", "Interior Detail", "seats", "Deep cleaned red leather seats after an interior detail in Arlington, VA"),
         ("express-clean", "Express Clean", "foam", "Foam hand wash on a black car during an express clean in Arlington, VA"),
@@ -350,7 +353,7 @@ def build_home():
     arealist = "".join(f'<li><a href="/areas/{a["slug"]}/">{e(a["name"])} {ARROW}</a></li>' for a in AREAS)
     body = f"""<main>
 <section class="hero" id="home">
-  <img class="hero-video" src="/assets/img/hero.jpg" alt="Black sedan with a mirror finish after detailing at Arlington Premier Auto Detailing" fetchpriority="high">
+  <img class="hero-video" src="/assets/img/hero.jpg" alt="Clean black sedan outside an independent service bay" fetchpriority="high">
   <div class="hero-bg"></div>
   <div class="hero-content"><div class="hero-grid"><div>
     <div class="hero-badge"><div class="badge-text">Arlington, VA &bull; By TAB Motors</div></div>
@@ -383,7 +386,7 @@ def build_home():
 </section>
 {quote_section()}
 <section class="ba-static"><div class="ba-static-inner">
-  <img src="/assets/img/paint.jpg" alt="Black car paint with swirl marks on one side and a polished mirror finish on the other" loading="lazy" width="1600" height="900">
+  <img src="/assets/img/paint.jpg" alt="Soft tree reflections in clean dark blue car paint" loading="lazy" width="1600" height="900">
   <div class="ba-text"><div class="section-label">The Reality of Paint Care</div>
   <h2 class="section-heading">Clean Is Not the Same as Cared For</h2>
   <p>Automatic washes leave fine swirl marks and miss everything baked into the clear coat. A clay treatment lifts what washing leaves behind, a one-step polish brings back depth, and wax or sealant protects the finish so it stays that way longer.</p>
@@ -418,7 +421,7 @@ def build_home():
 
 def build_services_hub():
     body = "<main>" + page_hero([("Home", "/"), ("Services", None)], 'Auto Detailing <span class="light">Services</span>',
-        "Five detailing packages and a full menu of add-ons, all done by hand at our shop in Arlington, VA.", "polish") + f"""
+        "Five detailing packages and a full menu of add-ons, all done by hand at our shop in Arlington, VA.", "finished-suv") + f"""
 <section class="section pk-section"><div class="section-label">Packages</div><h2 class="section-heading">Detailing Packages</h2>
 <p class="section-sub">Prices are listed for sedans and for SUVs or trucks.</p>{package_cards()}</section>
 <section class="section"><div class="section-label">Add-Ons</div><h2 class="section-heading">Add-On Services</h2>
