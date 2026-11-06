@@ -343,9 +343,9 @@ def build_home():
     ]
     tgrid = "".join(f'<div class="th-card fade-up"><h3>{e(t)}</h3><p>{e(d)}</p></div>' for t, d in threats)
     steps = [("01", "Call or Request a Quote", "Tell us the vehicle and package. We will confirm the price and find a time that works."),
-             ("02", "Drop Off at the Shop", f"Bring it to {STREET}. Plenty of cars here run on a work schedule, so drop off and go."),
+             ("02", "Drop Off at the Shop", f"Bring it to {STREET}. Drop it off on your way to work and pick it up when it is ready."),
              ("03", "We Detail It by Hand", "Express cleans take about an hour. A Premium Full Detail takes 3.5 to 5 hours."),
-             ("04", "Pick Up and Walk Around", "We go over the car with you before you leave. If something was missed, tell us and we will fix it.")]
+             ("04", "Pick Up and Walk Around", "We go over the car with you before you leave, so you can see the work for yourself.")]
     sgrid = "".join(f'<div class="process-step fade-up"><div class="step-num">{n}</div><h4>{e(t)}</h4><p>{e(d)}</p></div>' for n, t, d in steps)
     arealist = "".join(f'<li><a href="/areas/{a["slug"]}/">{e(a["name"])} {ARROW}</a></li>' for a in AREAS)
     body = f"""<main>
@@ -557,7 +557,7 @@ def build_about():
             ("Experienced Technicians", "Your car is handled by people who work on vehicles for a living."),
             ("Attention to Detail", "Door jambs, vents, seams and glass edges get the same care as the hood."),
             ("Great Prices and Value", "Every package price is posted, so you know the cost before you call."),
-            ("Customer Satisfaction", "We walk the car with you at pickup. If something was missed, we fix it.")]
+            ("Customer Satisfaction", "We walk the car with you at pickup so you can see the work for yourself.")]
     g = "".join(f'<div class="th-card fade-up"><h3>{e(t)}</h3><p>{e(d)}</p></div>' for t, d in vals)
     body = "<main>" + page_hero([("Home", "/"), ("About", None)], 'About Arlington <span class="light">Premier</span>',
         "The detailing side of TAB Motors, at the same North Arlington shop.", "polish") + f"""

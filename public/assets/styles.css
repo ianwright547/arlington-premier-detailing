@@ -939,7 +939,7 @@ img { max-width: 100%; display: block; }
   }
 }
 
-/* Generic accent utility — for highlighting "Drip" or other brand words in copy */
+
 .accent { color: var(--accent); }
 
 /* ============ EVERYTHING YOUR VEHICLE NEEDS — quote form section ============ */
@@ -2678,7 +2678,7 @@ img { max-width: 100%; display: block; }
   to   { opacity: 0.95; }
 }
 
-/* Drifting water droplets — on-brand for "Drip" */
+
 .svc3-drops { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
 .svc3-drop {
   position: absolute;
@@ -3776,7 +3776,7 @@ body.qf-modal-lock { overflow: hidden; }
   .qf-modal-dialog .quote-section-heading { font-size: 28px !important; }
 }
 
-/* Soft drifting droplets — glowing water beads, on-brand for "Drip" */
+
 .qf-rain {
   position: absolute;
   inset: 0;
@@ -4415,7 +4415,7 @@ body.qf-modal-lock { overflow: hidden; }
     to   { opacity: 1; }
   }
 
-  /* Drifting water droplets — on-brand for "Drip" */
+  
   .hub-drops { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
   .hub-drop {
     position: absolute;
