@@ -45,10 +45,8 @@ def head(path, title, desc, schema, og_type="website", image=None, image_alt=Non
     url = SITE_URL + path
     image = image or "og/" + (path.strip("/").replace("/", "-") or "home") + ".jpg"
     image_alt = e(image_alt or f"{NAME} in Arlington, VA")
-    article = (f'<meta property="article:published_time" content="{LASTMOD}">
-'
-               f'<meta property="article:modified_time" content="{LASTMOD}">
-') if og_type == "article" else ""
+    article = (f'<meta property="article:published_time" content="{LASTMOD}">\n'
+               f'<meta property="article:modified_time" content="{LASTMOD}">\n') if og_type == "article" else ""
     blocks = "\n".join(
         f'<script type="application/ld+json">{json.dumps(s, ensure_ascii=False)}</script>' for s in schema
     )
@@ -619,8 +617,7 @@ def write_extras():
     lines += ["", "## Pages"] + [f"- [{t}]({SITE_URL}{p})" for p, t, _ in pages]
     with open(os.path.join(OUT, "llms.txt"), "w", encoding="utf-8", newline="\n") as f:
         f.write("\n".join(lines) + "\n")
-    nf = re.sub(r'<link rel="canonical"[^>]*>
-', "", head("/404/", "Page Not Found | Arlington Premier", "That page does not exist.", [], image="og/home.jpg")).replace(
+    nf = re.sub(r'<link rel="canonical"[^>]*>\n', "", head("/404/", "Page Not Found | Arlington Premier", "That page does not exist.", [], image="og/home.jpg")).replace(
         'content="index, follow, max-image-preview:large"', 'content="noindex"') + nav() + f"""<main><section class="section nf"><h1 class="section-heading">Page Not Found</h1>
 <p class="section-sub">That page does not exist. Try our <a href="/services/">services</a> or call {PHONE_DISPLAY}.</p></section></main>""" + footer()
     with open(os.path.join(OUT, "404.html"), "w", encoding="utf-8", newline="\n") as f:
