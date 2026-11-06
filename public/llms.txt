@@ -1,0 +1,59 @@
+# Arlington Premier Auto Detailing
+
+> Professional auto detailing shop in Arlington, VA. Detailing division of TAB Motors.
+
+- Address: 4035 Old Dominion Dr, Arlington, VA 22207
+- Phone: (703) 243-3080
+- Email: support@tabmotorsarlington.com
+- Hours: Monday - Friday 7:00 AM - 6:00 PM; Saturday 7:00 AM - 3:00 PM; Sunday Closed
+
+## Packages
+- [Express Clean](https://arlington-premier-detailing.vercel.app/services/express-clean/): $49 sedan, $69 SUV or truck, approx. 45 to 60 minutes
+- [Basic Detail](https://arlington-premier-detailing.vercel.app/services/basic-detail/): $129 sedan, $159 SUV or truck, approx. 1.5 to 2.5 hours
+- [Premium Full Detail](https://arlington-premier-detailing.vercel.app/services/premium-full-detail/): $249 sedan, $299 SUV or truck, approx. 3.5 to 5 hours
+- [Interior Deep Detail](https://arlington-premier-detailing.vercel.app/services/interior-detail/): $149 sedan, $189 SUV or truck, approx. 1.5 to 2.5 hours
+- [Exterior Detail Only](https://arlington-premier-detailing.vercel.app/services/exterior-detail/): $119 sedan, $149 SUV or truck, approx. 1 to 2 hours
+
+## Add-ons
+- [Pet Hair Removal](https://arlington-premier-detailing.vercel.app/services/pet-hair-removal/): $30 - $60
+- [Seat and Carpet Shampoo](https://arlington-premier-detailing.vercel.app/services/seat-carpet-shampoo/): $40 - $70 each
+- [Engine Bay Cleaning](https://arlington-premier-detailing.vercel.app/services/engine-bay-cleaning/): $40 - $60
+- [Headlight Restoration (Pair)](https://arlington-premier-detailing.vercel.app/services/headlight-restoration/): $70 - $100
+- [Clay Bar Treatment](https://arlington-premier-detailing.vercel.app/services/clay-bar-treatment/): $50 - $80
+- [One-Step Paint Polish](https://arlington-premier-detailing.vercel.app/services/paint-polish/): $150 - $250
+- [Hand Wax or Sealant](https://arlington-premier-detailing.vercel.app/services/hand-wax-sealant/): $50 - $80
+- [Wheel Ceramic Sealant](https://arlington-premier-detailing.vercel.app/services/wheel-ceramic-sealant/): $50 - $100
+
+## Pages
+- [Auto Detailing Arlington VA | Arlington Premier](https://arlington-premier-detailing.vercel.app/)
+- [Auto Detailing Services in Arlington, VA | Arlington Premier](https://arlington-premier-detailing.vercel.app/services/)
+- [Car Detailing Prices Arlington VA | Arlington Premier](https://arlington-premier-detailing.vercel.app/pricing/)
+- [Express Car Wash & Clean Arlington VA | From $49](https://arlington-premier-detailing.vercel.app/services/express-clean/)
+- [Basic Car Detail Arlington VA | From $129](https://arlington-premier-detailing.vercel.app/services/basic-detail/)
+- [Full Car Detailing Arlington VA | From $249](https://arlington-premier-detailing.vercel.app/services/premium-full-detail/)
+- [Interior Car Detailing Arlington VA | From $149](https://arlington-premier-detailing.vercel.app/services/interior-detail/)
+- [Exterior Car Detailing Arlington VA | From $119](https://arlington-premier-detailing.vercel.app/services/exterior-detail/)
+- [Pet Hair Removal for Cars Arlington VA | Arlington Premier](https://arlington-premier-detailing.vercel.app/services/pet-hair-removal/)
+- [Car Seat & Carpet Shampoo Arlington VA | Arlington Premier](https://arlington-premier-detailing.vercel.app/services/seat-carpet-shampoo/)
+- [Engine Bay Cleaning Arlington VA | Arlington Premier](https://arlington-premier-detailing.vercel.app/services/engine-bay-cleaning/)
+- [Headlight Restoration Arlington VA | $70 to $100 a Pair](https://arlington-premier-detailing.vercel.app/services/headlight-restoration/)
+- [Clay Bar Treatment Arlington VA | Arlington Premier](https://arlington-premier-detailing.vercel.app/services/clay-bar-treatment/)
+- [Paint Polish & Swirl Removal Arlington VA | Arlington Premier](https://arlington-premier-detailing.vercel.app/services/paint-polish/)
+- [Hand Wax & Paint Sealant Arlington VA | Arlington Premier](https://arlington-premier-detailing.vercel.app/services/hand-wax-sealant/)
+- [Wheel Ceramic Sealant Arlington VA | Arlington Premier](https://arlington-premier-detailing.vercel.app/services/wheel-ceramic-sealant/)
+- [Service Areas | Arlington Premier Auto Detailing](https://arlington-premier-detailing.vercel.app/areas/)
+- [Auto Detailing Cherrydale, Arlington | Arlington Premier](https://arlington-premier-detailing.vercel.app/areas/cherrydale/)
+- [Car Detailing Ballston, Arlington VA | Arlington Premier](https://arlington-premier-detailing.vercel.app/areas/ballston/)
+- [Auto Detailing Clarendon, Arlington VA | Arlington Premier](https://arlington-premier-detailing.vercel.app/areas/clarendon/)
+- [Car Detailing Rosslyn, Arlington VA | Arlington Premier](https://arlington-premier-detailing.vercel.app/areas/rosslyn/)
+- [Auto Detailing Westover, Arlington VA | Arlington Premier](https://arlington-premier-detailing.vercel.app/areas/westover/)
+- [Car Detailing East Falls Church VA | Arlington Premier](https://arlington-premier-detailing.vercel.app/areas/east-falls-church/)
+- [Auto Detailing Near McLean VA | Arlington Premier](https://arlington-premier-detailing.vercel.app/areas/mclean/)
+- [Auto Detailing Near Falls Church VA | Arlington Premier](https://arlington-premier-detailing.vercel.app/areas/falls-church/)
+- [Car Care Blog | Arlington Premier Auto Detailing](https://arlington-premier-detailing.vercel.app/blog/)
+- [How Much Does Car Detailing Cost in Arlington, VA?](https://arlington-premier-detailing.vercel.app/blog/how-much-does-car-detailing-cost-arlington-va/)
+- [How Often Should You Detail Your Car in Northern Virginia?](https://arlington-premier-detailing.vercel.app/blog/how-often-should-you-detail-your-car-virginia/)
+- [Road Salt and Your Car: A Northern Virginia Winter Guide](https://arlington-premier-detailing.vercel.app/blog/road-salt-car-care-virginia-winter/)
+- [Detailing a Car Before You Sell It: What Is Worth Doing](https://arlington-premier-detailing.vercel.app/blog/get-your-car-ready-to-sell-detailing/)
+- [About Arlington Premier Auto Detailing | By TAB Motors](https://arlington-premier-detailing.vercel.app/about/)
+- [Contact & Book | Arlington Premier Auto Detailing](https://arlington-premier-detailing.vercel.app/contact/)
