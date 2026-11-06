@@ -41,8 +41,14 @@ def price_pair(p):
     return f"${p['sedan']} sedan / ${p['suv']} SUV or truck"
 
 
-def head(path, title, desc, schema, og_type="website", image="og-card-v1.jpg"):
+def head(path, title, desc, schema, og_type="website", image=None, image_alt=None):
     url = SITE_URL + path
+    image = image or "og/" + (path.strip("/").replace("/", "-") or "home") + ".jpg"
+    image_alt = e(image_alt or f"{NAME} in Arlington, VA")
+    article = (f'<meta property="article:published_time" content="{LASTMOD}">
+'
+               f'<meta property="article:modified_time" content="{LASTMOD}">
+') if og_type == "article" else ""
     blocks = "\n".join(
         f'<script type="application/ld+json">{json.dumps(s, ensure_ascii=False)}</script>' for s in schema
     )
@@ -53,6 +59,8 @@ def head(path, title, desc, schema, og_type="website", image="og-card-v1.jpg"):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#05080d">
 <meta name="format-detection" content="telephone=yes">
+<meta name="application-name" content="{SHORT}">
+<meta name="apple-mobile-web-app-title" content="{SHORT}">
 <title>{e(title)}</title>
 <meta name="description" content="{e(desc)}">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -64,18 +72,21 @@ def head(path, title, desc, schema, og_type="website", image="og-card-v1.jpg"):
 <meta property="og:description" content="{e(desc)}">
 <meta property="og:url" content="{url}">
 <meta property="og:image" content="{SITE_URL}/assets/{image}">
+<meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="{NAME} in Arlington, VA">
+<meta property="og:image:alt" content="{image_alt}">
 <meta property="og:site_name" content="{NAME}">
 <meta property="og:locale" content="en_US">
-<meta name="twitter:card" content="summary_large_image">
+{article}<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{e(title)}">
 <meta name="twitter:description" content="{e(desc)}">
 <meta name="twitter:image" content="{SITE_URL}/assets/{image}">
+<meta name="twitter:image:alt" content="{image_alt}">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
@@ -153,7 +164,7 @@ def business_schema():
         "@id": SITE_URL + "/#business",
         "name": NAME,
         "url": SITE_URL + "/",
-        "image": SITE_URL + "/assets/og-card-v1.jpg",
+        "image": SITE_URL + "/assets/img/shop-front.jpg",
         "logo": SITE_URL + "/assets/logo-card.png",
         "telephone": PHONE_TEL,
         "email": EMAIL,
@@ -284,9 +295,10 @@ def cta(h="Ready to See the Difference?", p="Book your detail at our Arlington s
 def write(path, title, desc, schema, body, og_type="website"):
     title = title.strip()
     pages.append((path, title, desc))
-    full = head(path, title, desc, schema, og_type) + nav() + body + footer()
+    h1 = re.search(r"<h1[^>]*>(.*?)</h1>", body, re.S).group(1)
+    h1 = html.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", h1))).strip()
+    full = head(path, title, desc, schema, og_type, image_alt=f"{h1} | {NAME}") + nav() + body + footer()
     full = re.sub(r'(/assets/img/[^"<> ]+\.jpg)(?=")', lambda m: f"{m[1]}?v={PHOTO_V}", full)
-    full = full.replace("/assets/og-card-v1.jpg", f"/assets/og-card-v1.jpg?v={PHOTO_V}")
     fp = os.path.join(OUT, path.strip("/"), "index.html") if path != "/" else os.path.join(OUT, "index.html")
     os.makedirs(os.path.dirname(fp), exist_ok=True)
     with open(fp, "w", encoding="utf-8", newline="\n") as f:
@@ -607,7 +619,8 @@ def write_extras():
     lines += ["", "## Pages"] + [f"- [{t}]({SITE_URL}{p})" for p, t, _ in pages]
     with open(os.path.join(OUT, "llms.txt"), "w", encoding="utf-8", newline="\n") as f:
         f.write("\n".join(lines) + "\n")
-    nf = head("/404/", "Page Not Found | Arlington Premier", "That page does not exist.", []).replace(
+    nf = re.sub(r'<link rel="canonical"[^>]*>
+', "", head("/404/", "Page Not Found | Arlington Premier", "That page does not exist.", [], image="og/home.jpg")).replace(
         'content="index, follow, max-image-preview:large"', 'content="noindex"') + nav() + f"""<main><section class="section nf"><h1 class="section-heading">Page Not Found</h1>
 <p class="section-sub">That page does not exist. Try our <a href="/services/">services</a> or call {PHONE_DISPLAY}.</p></section></main>""" + footer()
     with open(os.path.join(OUT, "404.html"), "w", encoding="utf-8", newline="\n") as f:

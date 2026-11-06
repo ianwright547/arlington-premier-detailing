@@ -31,7 +31,7 @@ All website JPEGs live in `public/assets/img/`. Existing photo filenames stay st
 | `hand-dry.jpg` | Drying towel draped over a white hood | New: Basic Detail supporting image |
 | `headlight-work.jpg` | Headlight with protective tape and restoration tools | New: Headlight Restoration supporting image |
 
-Images use optimized JPEG compression, with 1200-pixel service photos and larger landscape hero/paint images. The social preview at `public/assets/og-card-v1.jpg` uses the new hero photograph. The brand logo remains in the page header and existing logo files.
+Images use optimized JPEG compression, with 1200-pixel service photos and larger landscape hero/paint images. Each page has its own social share card in `public/assets/og/`, built by `tools/make_social_cards.py`. The brand logo remains in the page header and existing logo files.
 
 ## Editing and rebuilding
 
