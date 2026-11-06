@@ -10,7 +10,7 @@ Static site for Arlington Premier Auto Detailing, the detailing side of TAB Moto
 
 After editing, run `python generate.py` and commit `public/`. Quick text fixes can also be made directly in the `public/` HTML on GitHub, but the next generator run will overwrite them.
 
-Pushes to `main` deploy to Vercel.
+Deploy with `vercel --prod` from this folder unless the Vercel project shows a connected GitHub repo.
 
 ## Photography
 

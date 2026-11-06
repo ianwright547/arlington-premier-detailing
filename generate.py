@@ -25,8 +25,8 @@ MAPS_Q = "TAB+Motors+Arlington+4035+Old+Dominion+Dr+Arlington+VA+22207"
 MAPS_URL = f"https://www.google.com/maps/search/?api=1&query={MAPS_Q}"
 MAPS_EMBED = f"https://www.google.com/maps?q={MAPS_Q}&hl=en&z=14&output=embed"
 LASTMOD = "2026-11-06"
-ASSET_V = "1"
-PHOTO_V = "20261106-native"
+ASSET_V = "2"
+PHOTO_V = "20261106-opt"
 # ------------------------------------------------------------------------------
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -322,7 +322,7 @@ def build_home():
     cards = [
         ("premium-full-detail", "Premium Full Detail", "polish", "Orbital polisher and microfiber cloth on a car hood"),
         ("exterior-detail", "Exterior Detail", "wheel", "Freshly detailed wheel and tire on a black car in Arlington, VA"),
-        ("interior-detail", "Interior Detail", "seats", "Deep cleaned red leather seats after an interior detail in Arlington, VA"),
+        ("interior-detail", "Interior Detail", "seats", "Deep cleaned burgundy leather seats after an interior detail in Arlington, VA"),
         ("express-clean", "Express Clean", "foam", "Foam hand wash on a black car during an express clean in Arlington, VA"),
     ]
     svc = "".join(

@@ -159,3 +159,4 @@ main{display:block}
 #quote .quote-section-sub{color:rgba(255,255,255,.75)!important}
 
 @media (max-width:640px){.hero img.hero-video{object-position:82% center}}
+.hero .hero-sub{color:#eef2f7;text-shadow:0 1px 10px rgba(0,0,0,.75)}
