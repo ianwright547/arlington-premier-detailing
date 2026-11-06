@@ -157,3 +157,5 @@ main{display:block}
 /* quote heading: solid white */
 #quote .quote-section-heading{background:none!important;color:#fff!important;-webkit-text-fill-color:#fff!important;text-shadow:none;opacity:1;font-family:var(--font-display);text-transform:uppercase}
 #quote .quote-section-sub{color:rgba(255,255,255,.75)!important}
+
+@media (max-width:640px){.hero img.hero-video{object-position:82% center}}
