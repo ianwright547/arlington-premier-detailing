@@ -1,4 +1,4 @@
-/* Arlington Premier brand layer on top of the base stylesheet */
+/* Pristine Auto Detailing brand layer on top of the base stylesheet */
 :root{--bg-primary:#05080d;--bg-secondary:#0a0f18;--bg-card:#0e1622;--gold:#e0b354;--rule:rgba(255,255,255,.08)}
 body{background:var(--bg-primary)}
 main{display:block}

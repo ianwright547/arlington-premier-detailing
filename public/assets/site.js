@@ -37,8 +37,9 @@ if ('IntersectionObserver' in window) {
 (function () {
   var bar = document.createElement('div');
   bar.className = 'mobile-bar';
-  bar.innerHTML = '<a class="mb-call" href="tel:+17032433080">Call</a>' +
+  bar.innerHTML = '<a class="mb-call">Call</a>' +
     '<a class="mb-text" href="https://www.google.com/maps/search/?api=1&query=TAB+Motors+Arlington+4035+Old+Dominion+Dr+Arlington+VA+22207" target="_blank" rel="noopener">Directions</a>' +
     '<a class="mb-quote" href="/contact/#quote">Quote</a>';
+  bar.querySelector('.mb-call').href = nav.querySelector('.btn-nav').href;
   document.body.appendChild(bar);
 })();

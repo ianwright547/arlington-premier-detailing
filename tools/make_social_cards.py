@@ -25,7 +25,7 @@ def font(size):
         f.set_variation_by_name("Bold Condensed")
         return f
     except OSError:
-        return ImageFont.truetype("impact.ttf", size)
+        return ImageFont.truetype("Impact.ttf", size)
 
 
 def cover(path):

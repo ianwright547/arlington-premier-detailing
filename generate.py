@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Arlington Premier Auto Detailing site generator.
+"""Pristine Auto Detailing Arlington site generator.
 
 Edit the CONFIG block or the content in content.py, then run: python generate.py
 Every page, sitemap.xml, robots.txt and llms.txt is rebuilt from this file.
@@ -9,11 +9,11 @@ from content import PACKAGES, ADDONS, SERVICES, AREAS, POSTS, HOME_FAQ
 
 # ---------------- CONFIG: change a value here and every page follows ----------
 SITE_URL = "https://arlington-premier-detailing.vercel.app"  # swap when the domain is live
-NAME = "Arlington Premier Auto Detailing"
-SHORT = "Arlington Premier"
+NAME = "Pristine Auto Detailing Arlington"
+SHORT = "Pristine"
 PARENT = "TAB Motors Arlington"
-PHONE_DISPLAY = "(703) 243-3080"
-PHONE_TEL = "+17032433080"
+PHONE_DISPLAY = "(703) 964-2687"
+PHONE_TEL = "+17039642687"
 EMAIL = "support@tabmotorsarlington.com"
 STREET = "4035 Old Dominion Dr"
 CITY = "Arlington"
@@ -25,7 +25,7 @@ MAPS_Q = "TAB+Motors+Arlington+4035+Old+Dominion+Dr+Arlington+VA+22207"
 MAPS_URL = f"https://www.google.com/maps/search/?api=1&query={MAPS_Q}"
 MAPS_EMBED = f"https://www.google.com/maps?q={MAPS_Q}&hl=en&z=14&output=embed"
 LASTMOD = "2026-11-06"
-ASSET_V = "2"
+ASSET_V = "3"
 PHOTO_V = "20261106-opt"
 # ------------------------------------------------------------------------------
 
@@ -69,7 +69,7 @@ def head(path, title, desc, schema, og_type="website", image=None, image_alt=Non
 <meta property="og:title" content="{e(title)}">
 <meta property="og:description" content="{e(desc)}">
 <meta property="og:url" content="{url}">
-<meta property="og:image" content="{SITE_URL}/assets/{image}">
+<meta property="og:image" content="{SITE_URL}/assets/{image}?v={ASSET_V}">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -79,12 +79,12 @@ def head(path, title, desc, schema, og_type="website", image=None, image_alt=Non
 {article}<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{e(title)}">
 <meta name="twitter:description" content="{e(desc)}">
-<meta name="twitter:image" content="{SITE_URL}/assets/{image}">
+<meta name="twitter:image" content="{SITE_URL}/assets/{image}?v={ASSET_V}">
 <meta name="twitter:image:alt" content="{image_alt}">
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png">
-<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<link rel="manifest" href="/site.webmanifest">
+<link rel="icon" href="/favicon.ico?v={ASSET_V}" sizes="any">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png?v={ASSET_V}">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v={ASSET_V}">
+<link rel="manifest" href="/site.webmanifest?v={ASSET_V}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
@@ -100,7 +100,7 @@ def nav():
     svc = "".join(f'<a href="/services/{s["slug"]}/">{e(s["name"])}</a>' for s in SERVICES)
     area = "".join(f'<a href="/areas/{a["slug"]}/">{e(a["name"])}</a>' for a in AREAS)
     return f"""<header><nav class="nav" id="nav" aria-label="Main navigation">
-  <div class="nav-logo"><a href="/" aria-label="{NAME} home"><img src="/assets/logo-nav.png" alt="{NAME} by TAB Motors logo" width="188" height="64"></a></div>
+  <div class="nav-logo"><a href="/" aria-label="{NAME} home"><img src="/assets/logo-nav.png?v={ASSET_V}" alt="{NAME} logo" width="564" height="305"></a></div>
   <div class="nav-right">
     <a href="tel:{PHONE_TEL}" class="btn-nav">Call Now</a>
     <button class="nav-menu-toggle" id="navMenuToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -138,7 +138,7 @@ def footer():
 <footer class="footer">
   <div class="footer-grid">
     <div class="footer-brand">
-      <img class="footer-logo-img" src="/assets/logo-nav.png" alt="{NAME}" width="188" height="64" loading="lazy">
+      <img class="footer-logo-img" src="/assets/logo-nav.png?v={ASSET_V}" alt="{NAME}" width="564" height="305" loading="lazy">
       <p>Professional hand detailing in Arlington, VA. Express cleans, full details, interior and exterior packages, and add-on services with prices posted up front.</p>
       <p class="footer-contact">{PHONE_DISPLAY} &bull; {EMAIL}</p>
     </div>
@@ -163,7 +163,7 @@ def business_schema():
         "name": NAME,
         "url": SITE_URL + "/",
         "image": SITE_URL + "/assets/img/shop-front.jpg",
-        "logo": SITE_URL + "/assets/logo-card.png",
+        "logo": f"{SITE_URL}/assets/logo-card.png?v={ASSET_V}",
         "telephone": PHONE_TEL,
         "email": EMAIL,
         "priceRange": "$49 - $299",
@@ -327,7 +327,7 @@ def page_hero(crumb, h1, lede, img="hero", ctas=True, stats=None):
 
 
 def build_home():
-    title = "Auto Detailing Arlington VA | Arlington Premier"
+    title = "Auto Detailing Arlington VA | Pristine Auto Detailing"
     desc = f"Professional auto detailing in Arlington, VA. Express cleans from $49, full details from $249. Interior, exterior and add-ons. Call {PHONE_DISPLAY}."
     cards = [
         ("premium-full-detail", "Premium Full Detail", "polish", "Orbital polisher and microfiber cloth on a car hood"),
@@ -438,8 +438,8 @@ def build_services_hub():
 <p class="section-sub">Add to any package, or book on their own.</p>{addon_cards()}</section>
 {cta()}</main>
 """
-    write("/services/", "Auto Detailing Services in Arlington, VA | Arlington Premier",
-          "Every auto detailing service at Arlington Premier: express clean, basic and premium details, interior, exterior, paint polish, pet hair and more.",
+    write("/services/", "Auto Detailing Services in Arlington, VA | Pristine Auto Detailing",
+          "Every auto detailing service at Pristine Auto Detailing: express clean, basic and premium details, interior, exterior, paint polish, pet hair and more.",
           [crumbs([("Home", "/"), ("Services", "/services/")])], body)
 
 
@@ -448,7 +448,7 @@ def build_pricing():
         f'<tr><td><a href="/services/{p["slug"]}/">{e(p["name"])}</a></td><td>${p["sedan"]}</td><td>${p["suv"]}</td><td>{e(p["time"])}</td></tr>' for p in PACKAGES)
     arows = "".join(f'<tr><td><a href="/services/{a["slug"]}/">{e(a["name"])}</a></td><td>{e(a["price"])}</td></tr>' for a in ADDONS)
     body = "<main>" + page_hero([("Home", "/"), ("Pricing", None)], 'Detailing <span class="light">Prices</span>',
-        "What auto detailing costs at Arlington Premier. Every package and add-on price in one place.", "foam") + f"""
+        "What auto detailing costs at Pristine Auto Detailing. Every package and add-on price in one place.", "foam") + f"""
 <section class="section"><h2 class="section-heading">Detailing Packages</h2>
 <div class="tbl-wrap"><table class="pr-table"><thead><tr><th>Package</th><th>Sedan</th><th>SUV / Truck</th><th>Time</th></tr></thead><tbody>{rows}</tbody></table></div>
 <h2 class="section-heading pr-gap">Add-On Services</h2>
@@ -456,7 +456,7 @@ def build_pricing():
 <p class="pr-note">Add-on prices are ranges because the work depends on the condition of the vehicle. We confirm the exact price before we begin.</p>
 </section>{quote_section()}{cta()}</main>
 """
-    write("/pricing/", "Car Detailing Prices Arlington VA | Arlington Premier",
+    write("/pricing/", "Car Detailing Prices Arlington VA | Pristine Auto Detailing",
           "Car detailing prices in Arlington, VA. Express Clean $49, Basic Detail $129, Premium Full Detail $249, plus add-on prices for every service.",
           [crumbs([("Home", "/"), ("Pricing", "/pricing/")])], body)
 
@@ -516,10 +516,10 @@ def build_areas():
     grid = "".join(
         f'<a class="ar-card fade-up" href="/areas/{a["slug"]}/"><h3>{e(a["name"])}</h3><p>{e(a["card"])}</p><span>Learn More {ARROW}</span></a>' for a in AREAS)
     body = "<main>" + page_hero([("Home", "/"), ("Service Areas", None)], 'Detailing Near <span class="light">You</span>',
-        "Arlington Premier is a drop-off shop in North Arlington. These are the neighborhoods and towns we serve most.", "wheel") + f"""
+        "Pristine Auto Detailing is a drop-off shop in North Arlington. These are the neighborhoods and towns we serve most.", "wheel") + f"""
 <section class="section"><h2 class="section-heading">Where Our Customers Come From</h2><p class="section-sub">All detailing happens at our shop at {STREET}.</p><div class="ar-grid">{grid}</div></section>{cta()}</main>
 """
-    write("/areas/", "Service Areas | Arlington Premier Auto Detailing",
+    write("/areas/", "Service Areas | Pristine Auto Detailing Arlington",
           "Auto detailing for drivers across Arlington, Ballston, Clarendon, Rosslyn, Cherrydale, McLean and Falls Church, at our North Arlington shop.",
           [crumbs([("Home", "/"), ("Service Areas", "/areas/")])], body)
     for a in AREAS:
@@ -542,10 +542,10 @@ def build_blog():
     grid = "".join(
         f'<a class="bl-card fade-up" href="/blog/{p["slug"]}/"><img src="/assets/img/{p["img"]}.jpg" alt="{e(p["alt"])}" loading="lazy"><div><span>{e(p["cat"])}</span><h2>{e(p["h1"])}</h2><p>{e(p["desc"])}</p></div></a>' for p in POSTS)
     body = "<main>" + page_hero([("Home", "/"), ("Blog", None)], 'Detailing <span class="light">Guides</span>',
-        "Plain advice on keeping a car clean in Northern Virginia, from the team at Arlington Premier.", "beads", ctas=False) + f"""
+        "Plain advice on keeping a car clean in Northern Virginia, from the team at Pristine Auto Detailing.", "beads", ctas=False) + f"""
 <section class="section"><div class="bl-grid">{grid}</div></section>{cta()}</main>
 """
-    write("/blog/", "Car Care Blog | Arlington Premier Auto Detailing",
+    write("/blog/", "Car Care Blog | Pristine Auto Detailing Arlington",
           "Car detailing guides for Northern Virginia drivers: pricing, how often to detail, winter salt, pollen and getting a car ready to sell.",
           [crumbs([("Home", "/"), ("Blog", "/blog/")])], body)
     for p in POSTS:
@@ -572,18 +572,18 @@ def build_about():
             ("Great Prices and Value", "Every package price is posted, so you know the cost before you call."),
             ("Customer Satisfaction", "We walk the car with you at pickup so you can see the work for yourself.")]
     g = "".join(f'<div class="th-card fade-up"><h3>{e(t)}</h3><p>{e(d)}</p></div>' for t, d in vals)
-    body = "<main>" + page_hero([("Home", "/"), ("About", None)], 'About Arlington <span class="light">Premier</span>',
+    body = "<main>" + page_hero([("Home", "/"), ("About", None)], 'About <span class="light">Pristine</span>',
         "The detailing side of TAB Motors, at the same North Arlington shop.", "polish") + f"""
 <section class="svc3-section svc3-mix"><div class="svc3-wrap"><div class="svc3-mix-head"><div class="svc3-eyebrow">Our Story</div><h2 class="svc3-mix-h2">A detailing shop with a real repair shop behind it.</h2></div>
 <div class="svc3-mix-row"><div class="svc3-mix-text">
 <p>{NAME} is the detailing division of TAB Motors, the AAA Approved Auto Repair shop at {STREET} in Arlington. Our neighbors already trust the shop with brakes and state inspections. Now the same location handles the look and feel of the car too.</p>
 <p>We built the service around one idea: nobody should have to guess what a detail costs. Every package is listed by vehicle size with the time it takes, and every add-on has a posted range. You pick what the car needs, drop it off, and pick it up clean.</p>
-</div><div class="svc3-mix-media"><img src="/assets/img/shop-front.jpg" alt="TAB Motors shop on Old Dominion Dr in Arlington, VA, home of Arlington Premier Auto Detailing" loading="lazy"></div></div></div></section>
+</div><div class="svc3-mix-media"><img src="/assets/img/shop-front.jpg" alt="TAB Motors shop on Old Dominion Dr in Arlington, VA, home of Pristine Auto Detailing Arlington" loading="lazy"></div></div></div></section>
 <section class="section"><div class="section-label">What You Can Expect</div><h2 class="section-heading">Why Drivers Choose Us</h2><div class="th-grid">{g}</div></section>
 {cta()}</main>
 """
-    write("/about/", "About Arlington Premier Auto Detailing | By TAB Motors",
-          "Arlington Premier Auto Detailing is the detailing division of TAB Motors, a AAA Approved Auto Repair shop in Arlington, VA.",
+    write("/about/", "About Pristine Auto Detailing Arlington | By TAB Motors",
+          "Pristine Auto Detailing Arlington is the detailing division of TAB Motors, a AAA Approved Auto Repair shop in Arlington, VA.",
           [crumbs([("Home", "/"), ("About", "/about/")])], body)
 
 
@@ -598,7 +598,7 @@ def build_contact():
   <div class="ct-card"><h2>Hours</h2><div class="fl-hours">{hours}</div></div>
 </section>{cta()}</main>
 """
-    write("/contact/", "Contact & Book | Arlington Premier Auto Detailing",
+    write("/contact/", "Contact & Book | Pristine Auto Detailing Arlington",
           f"Book auto detailing in Arlington, VA. Call {PHONE_DISPLAY} or request a quote. {ADDRESS}. Open Monday to Saturday.",
           [crumbs([("Home", "/"), ("Contact", "/contact/")])], body)
 
@@ -618,10 +618,10 @@ def write_extras():
     with open(os.path.join(OUT, "llms.txt"), "w", encoding="utf-8", newline="\n") as f:
         f.write("\n".join(lines) + "\n")
     manifest = {"name": NAME, "short_name": SHORT, "start_url": "/", "display": "standalone", "background_color": "#05080d", "theme_color": "#05080d",
-                "icons": [{"src": "/assets/icon-192.png", "sizes": "192x192", "type": "image/png"}, {"src": "/assets/apple-touch-icon.png", "sizes": "180x180", "type": "image/png"}]}
+                "icons": [{"src": f"/assets/icon-192.png?v={ASSET_V}", "sizes": "192x192", "type": "image/png"}, {"src": f"/assets/apple-touch-icon.png?v={ASSET_V}", "sizes": "180x180", "type": "image/png"}]}
     with open(os.path.join(OUT, "site.webmanifest"), "w", encoding="utf-8", newline="\n") as f:
         json.dump(manifest, f, indent=2)
-    nf = re.sub(r'<link rel="canonical"[^>]*>\n', "", head("/404/", "Page Not Found | Arlington Premier", "That page does not exist.", [], image="og/home.jpg")).replace(
+    nf = re.sub(r'<link rel="canonical"[^>]*>\n', "", head("/404/", "Page Not Found | Pristine Auto Detailing", "That page does not exist.", [], image="og/home.jpg")).replace(
         'content="index, follow, max-image-preview:large"', 'content="noindex"') + nav() + f"""<main><section class="section nf"><h1 class="section-heading">Page Not Found</h1>
 <p class="section-sub">That page does not exist. Try our <a href="/services/">services</a> or call {PHONE_DISPLAY}.</p></section></main>""" + footer()
     with open(os.path.join(OUT, "404.html"), "w", encoding="utf-8", newline="\n") as f:

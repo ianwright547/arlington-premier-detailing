@@ -1,6 +1,6 @@
-# Arlington Premier Auto Detailing
+# Pristine Auto Detailing Arlington
 
-Static site for Arlington Premier Auto Detailing, the detailing side of TAB Motors in Arlington, VA.
+Static site for Pristine Auto Detailing Arlington, the detailing side of TAB Motors in Arlington, VA.
 
 ## Edit from anywhere
 
@@ -8,7 +8,7 @@ Static site for Arlington Premier Auto Detailing, the detailing side of TAB Moto
 - **Prices, packages, page copy**: `content.py`
 - **Quote form destination**: `WEBHOOK` at the top of `public/assets/quote.js`
 
-After editing, run `python generate.py`, then `python tools/make_social_cards.py` if a headline or hero photo changed, and commit `public/`. Quick text fixes can also be made directly in the `public/` HTML on GitHub, but the next generator run will overwrite them.
+After editing, run `python generate.py`, then `python tools/make_social_cards.py` if the logo, a headline, or a hero photo changed, and commit `public/`. Quick text fixes can also be made directly in the `public/` HTML on GitHub, but the next generator run will overwrite them.
 
 Deploy with `vercel --prod` from this folder unless the Vercel project shows a connected GitHub repo.
 
