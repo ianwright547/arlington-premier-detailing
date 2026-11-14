@@ -25,7 +25,7 @@ MAPS_Q = "TAB+Motors+Arlington+4035+Old+Dominion+Dr+Arlington+VA+22207"
 MAPS_URL = f"https://www.google.com/maps/search/?api=1&query={MAPS_Q}"
 MAPS_EMBED = f"https://www.google.com/maps?q={MAPS_Q}&hl=en&z=14&output=embed"
 LASTMOD = "2026-11-06"
-ASSET_V = "3"
+ASSET_V = "4"
 PHOTO_V = "20261106-opt"
 # ------------------------------------------------------------------------------
 
@@ -127,7 +127,7 @@ def footer():
     <div class="fl-map"><iframe src="{MAPS_EMBED}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map to {NAME}" allowfullscreen></iframe></div>
     <div>
       <div class="fl-label">{NAME}</div>
-      <h3>By TAB Motors</h3>
+      <h2>By TAB Motors</h2>
       <address>{STREET}<br>{CITY}, {STATE} {ZIP}</address>
       <a class="fl-phone" href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a>
       <div class="fl-hours">{hours}</div>
@@ -142,9 +142,9 @@ def footer():
       <p>Professional hand detailing in Arlington, VA. Express cleans, full details, interior and exterior packages, and add-on services with prices posted up front.</p>
       <p class="footer-contact">{PHONE_DISPLAY} &bull; {EMAIL}</p>
     </div>
-    <div class="footer-col"><h5>Services</h5>{svc}<a href="/services/">All Services</a></div>
-    <div class="footer-col"><h5>Service Areas</h5>{area}</div>
-    <div class="footer-col"><h5>Company</h5><a href="/pricing/">Pricing</a><a href="/about/">About</a><a href="/blog/">Blog</a><a href="/contact/">Contact</a></div>
+    <div class="footer-col"><h2>Services</h2>{svc}<a href="/services/">All Services</a></div>
+    <div class="footer-col"><h2>Service Areas</h2>{area}</div>
+    <div class="footer-col"><h2>Company</h2><a href="/pricing/">Pricing</a><a href="/about/">About</a><a href="/blog/">Blog</a><a href="/contact/">Contact</a></div>
   </div>
   <div class="footer-bottom"><span>&copy; 2026 {NAME}. A TAB Motors company. Some photos are illustrative.</span></div>
 </footer>
@@ -200,7 +200,6 @@ def faq_block(title, intro, faqs):
         f'<details class="faq-item pm-faq"><summary>{e(q)}</summary><p>{e(a)}</p></details>' for q, a in faqs
     )
     return f"""<section class="pm-faq-section" id="faq"><div class="pm-narrow">
-  <div class="pm-chip">FAQ</div>
   <h2 class="pm-h2">{e(title)}</h2>
   <p class="pm-sub">{e(intro)}</p>
   <div class="pm-faq-list">{items}</div>
@@ -237,7 +236,7 @@ def addon_cards():
 def quote_section(sub="Tell us about your vehicle and what it needs. We will follow up during shop hours."):
     return f"""<section class="quote-section section" id="quote">
   <div class="quote-section-inner">
-    <h2 class="quote-section-heading">Get A Quote</h2>
+    <h2 class="quote-section-heading">Get a Quote</h2>
     <p class="quote-section-sub">{e(sub)}</p>
     <div class="quote-box quote-multistep" id="quoteForm">
       <div class="qf-progress"><div class="qf-progress-track"><div class="qf-progress-bar" id="qfProgressBar"></div></div><div class="qf-progress-text" id="qfProgressText">Step 1 of 3</div></div>
@@ -318,7 +317,7 @@ def page_hero(crumb, h1, lede, img="hero", ctas=True, stats=None):
   <div class="svc3-hero-veil"></div>
   <div class="svc3-wrap">
     <div class="svc3-crumb">{cr}</div>
-    <h1 class="svc3-h1">{h1}</h1>
+    <h1 class="page-title svc3-h1">{h1}</h1>
     <p class="svc3-lede">{e(lede)}</p>
     {btns}{st}
   </div>
@@ -339,7 +338,7 @@ def build_home():
         f"""<a class="service-card fade-up" href="/services/{s}/" aria-label="{e(n)}"><div class="card-img-wrap"><img src="/assets/img/{i}.jpg" alt="{e(a)}" loading="lazy"></div><div class="card-overlay"><div class="card-title">{e(n)}</div><div class="card-price">View Details</div></div></a>"""
         for s, n, i, a in cards)
     icons = "".join(
-        f'<div class="ic-item fade-up"><img src="/assets/icon-{k}.png" alt="" width="84" height="84" loading="lazy"><h3>{t}</h3><p>{d}</p></div>'
+        f'<div class="ic-item fade-up"><img src="/assets/icon-{k}.png" alt="" width="84" height="84" loading="lazy"><p class="ic-title">{t}</p><p>{d}</p></div>'
         for k, t, d in [
             ("cleaner", "Cleaner", "Hand washed and hand finished, inside and out."),
             ("protected", "Protected", "Wax, sealant and trim care that hold up to Virginia weather."),
@@ -359,64 +358,58 @@ def build_home():
              ("02", "Drop Off at the Shop", f"Bring it to {STREET}. Drop it off on your way to work and pick it up when it is ready."),
              ("03", "We Detail It by Hand", "Express cleans take about an hour. A Premium Full Detail takes 3.5 to 5 hours."),
              ("04", "Pick Up and Walk Around", "We go over the car with you before you leave, so you can see the work for yourself.")]
-    sgrid = "".join(f'<div class="process-step fade-up"><div class="step-num">{n}</div><h4>{e(t)}</h4><p>{e(d)}</p></div>' for n, t, d in steps)
+    sgrid = "".join(f'<div class="process-step fade-up"><div class="step-num">{n}</div><h3>{e(t)}</h3><p>{e(d)}</p></div>' for n, t, d in steps)
     arealist = "".join(f'<li><a href="/areas/{a["slug"]}/">{e(a["name"])} {ARROW}</a></li>' for a in AREAS)
     body = f"""<main>
 <section class="hero" id="home">
   <img class="hero-video" src="/assets/img/hero.jpg" alt="Clean black sedan outside an independent service bay" fetchpriority="high">
   <div class="hero-bg"></div>
-  <div class="hero-content"><div class="hero-grid"><div>
-    <div class="hero-badge"><div class="badge-text">Arlington, VA &bull; By TAB Motors</div></div>
-    <h1>Professional Auto Detailing <br>Inside and Out in <span class="accent">Arlington, VA</span></h1>
-    <p class="hero-sub">Premium care and an exceptional shine at a shop you already know. Packages from $49, with every price posted up front.</p>
+  <div class="hero-content">
+    <h1 class="page-title">Auto Detailing <span class="accent">in Arlington, VA</span></h1>
+    <p class="hero-sub">Hand washing, interior cleaning and full details at TAB Motors. Packages start at $49.</p>
     <div class="hero-ctas">
-      <a class="btn-primary" href="#quote">Get A Quote {ARROW}</a>
+      <a class="btn-primary" href="#quote">Get a Quote {ARROW}</a>
       <a class="btn-outline" href="tel:{PHONE_TEL}">Call {PHONE_DISPLAY}</a>
     </div>
-  </div></div></div>
+  </div>
 </section>
 <section class="ic-strip"><div class="ic-grid">{icons}</div></section>
 <section class="section" id="services">
-  <h2 class="section-heading">Auto Detailing Services in Arlington</h2>
+  <h2 class="section-heading">Detailing Services</h2>
   <p class="section-sub">From a quick clean to a full reset, done by hand at our Arlington shop.</p>
   <div class="services-grid">{svc}</div>
   <div class="services-cta"><a class="btn-primary" href="/services/">See All Services</a></div>
 </section>
 <section class="section pk-section" id="packages">
-  <div class="section-label">Detailing Packages</div>
-  <h2 class="section-heading">Prices Up Front. No Guessing.</h2>
+  <h2 class="section-heading">Detailing Packages</h2>
   <p class="section-sub">Pick a package by vehicle size. Heavy soiling or oversized vehicles may cost more, and we will tell you before we start.</p>
   {package_cards()}
 </section>
 <section class="section" id="addons">
-  <div class="section-label">Popular Add-Ons</div>
-  <h2 class="section-heading">Add What Your Car Needs</h2>
+  <h2 class="section-heading">Detailing Add-Ons</h2>
   <p class="section-sub">Stack any of these onto a package, or book them on their own.</p>
   {addon_cards()}
 </section>
 {quote_section()}
 <section class="ba-static"><div class="ba-static-inner">
   <img src="/assets/img/paint.jpg" alt="Soft tree reflections in clean dark blue car paint" loading="lazy" width="1600" height="900">
-  <div class="ba-text"><div class="section-label">The Reality of Paint Care</div>
-  <h2 class="section-heading">Clean Is Not the Same as Cared For</h2>
+  <div class="ba-text"><h2 class="section-heading">Paint Care and Protection</h2>
   <p>Automatic washes leave fine swirl marks and miss everything baked into the clear coat. A clay treatment lifts what washing leaves behind, a one-step polish brings back depth, and wax or sealant protects the finish so it stays that way longer.</p>
   <a class="btn-primary" href="/services/paint-polish/">See Paint Polish</a></div>
 </div></section>
 <section class="section">
-  <div class="section-label">Simple and Easy</div>
-  <h2 class="section-heading">How Detailing Works Here</h2>
+  <h2 class="section-heading">What to Expect</h2>
   <p class="section-sub">Four steps, no surprises.</p>
   <div class="process-steps">{sgrid}</div>
 </section>
 <section class="section th-section" id="northern-virginia">
-  <div class="section-label">Built for Northern Virginia</div>
-  <h2 class="section-heading">What Arlington Does to Your Car</h2>
+  <h2 class="section-heading">How Local Roads and Weather Affect Your Car</h2>
   <p class="section-sub">Every season here brings its own mess. These are the ones we see most.</p>
   <div class="th-grid">{tgrid}</div>
 </section>
 {faq_block("Auto Detailing Questions", "Straight answers about pricing, timing and what to expect.", HOME_FAQ)}
 <section class="sa-section"><div class="sa-wrap">
-  <div class="sa-head"><div class="pm-chip">Service Area</div><h2 class="pm-h2">Serving Arlington and Northern Virginia</h2>
+  <div class="sa-head"><h2 class="pm-h2">Serving Arlington and Northern Virginia</h2>
   <p class="pm-sub">Our shop is in North Arlington, close to Cherrydale, Ballston and Route 29.</p></div>
   <ul class="sa-cities">{arealist}</ul>
   <div class="services-cta"><a class="btn-primary" href="/areas/">All Service Areas</a></div>
@@ -430,11 +423,11 @@ def build_home():
 
 
 def build_services_hub():
-    body = "<main>" + page_hero([("Home", "/"), ("Services", None)], 'Auto Detailing <span class="light">Services</span>',
+    body = "<main>" + page_hero([("Home", "/"), ("Services", None)], 'Auto Detailing Services',
         "Five detailing packages and a full menu of add-ons, all done by hand at our shop in Arlington, VA.", "finished-suv") + f"""
-<section class="section pk-section"><div class="section-label">Packages</div><h2 class="section-heading">Detailing Packages</h2>
+<section class="section pk-section"><h2 class="section-heading">Detailing Packages</h2>
 <p class="section-sub">Prices are listed for sedans and for SUVs or trucks.</p>{package_cards()}</section>
-<section class="section"><div class="section-label">Add-Ons</div><h2 class="section-heading">Add-On Services</h2>
+<section class="section"><h2 class="section-heading">Add-On Services</h2>
 <p class="section-sub">Add to any package, or book on their own.</p>{addon_cards()}</section>
 {cta()}</main>
 """
@@ -447,7 +440,7 @@ def build_pricing():
     rows = "".join(
         f'<tr><td><a href="/services/{p["slug"]}/">{e(p["name"])}</a></td><td>${p["sedan"]}</td><td>${p["suv"]}</td><td>{e(p["time"])}</td></tr>' for p in PACKAGES)
     arows = "".join(f'<tr><td><a href="/services/{a["slug"]}/">{e(a["name"])}</a></td><td>{e(a["price"])}</td></tr>' for a in ADDONS)
-    body = "<main>" + page_hero([("Home", "/"), ("Pricing", None)], 'Detailing <span class="light">Prices</span>',
+    body = "<main>" + page_hero([("Home", "/"), ("Pricing", None)], 'Detailing Prices',
         "What auto detailing costs at Pristine Auto Detailing. Every package and add-on price in one place.", "foam") + f"""
 <section class="section"><h2 class="section-heading">Detailing Packages</h2>
 <div class="tbl-wrap"><table class="pr-table"><thead><tr><th>Package</th><th>Sedan</th><th>SUV / Truck</th><th>Time</th></tr></thead><tbody>{rows}</tbody></table></div>
@@ -469,7 +462,7 @@ def build_service(s):
     pair = "".join(
         f'<li><span class="svc3-list-num">+</span><span class="svc3-list-item"><a href="/services/{sl}/">{e(nm)}</a></span></li>' for sl, nm in s["pairs"])
     steps = "".join(
-        f'<div class="svc3-step"><div class="svc3-step-num">{i+1:02d}</div><div><h4>{e(t)}</h4><p>{e(d)}</p></div></div>' for i, (t, d) in enumerate(s["steps"]))
+        f'<div class="svc3-step"><div class="svc3-step-num">{i+1:02d}</div><div><h3>{e(t)}</h3><p>{e(d)}</p></div></div>' for i, (t, d) in enumerate(s["steps"]))
     specs = "".join(
         f'<div class="svc3-spec"><div class="svc3-spec-label">{e(l)}</div><div class="svc3-spec-value">{e(v)}</div></div>' for l, v in s["stats"])
     switch = "".join(
@@ -477,24 +470,24 @@ def build_service(s):
     paras = "".join(f"<p>{e(p)}</p>" for p in s["body"])
     body = "<main>" + page_hero([("Home", "/"), ("Services", "/services/"), (n, None)], s["h1"], s["lede"], s["img"], stats=s["stats"]) + f"""
 <section class="svc3-section svc3-mix" id="overview"><div class="svc3-wrap">
-  <div class="svc3-mix-head"><div class="svc3-eyebrow">The Service</div><h2 class="svc3-mix-h2">{e(s['headline'])}</h2></div>
+  <div class="svc3-mix-head"><h2 class="svc3-mix-h2">{e(s['headline'])}</h2></div>
   <div class="svc3-mix-row"><div class="svc3-mix-text">{paras}</div>
   <div class="svc3-mix-media"><img src="/assets/img/{s['img2']}.jpg" alt="{e(s['alt'])}" loading="lazy"></div></div>
 </div></section>
 <section class="svc3-section" id="included"><div class="svc3-wrap"><div class="svc3-lists">
-  <div class="svc3-list-col"><div class="svc3-list-label">{e(price_label(s))}</div><h3>What&rsquo;s<br>Included</h3><ol class="svc3-list">{inc}</ol></div>
-  <div class="svc3-list-col alt"><div class="svc3-list-label">Optional + Related</div><h3>Pairs<br>Well With</h3><ol class="svc3-list">{pair}</ol>
+  <div class="svc3-list-col"><div class="svc3-list-label">{e(price_label(s))}</div><h2>What’s Included</h2><ol class="svc3-list">{inc}</ol></div>
+  <div class="svc3-list-col alt"><div class="svc3-list-label">Optional + Related</div><h2>Related Services</h2><ol class="svc3-list">{pair}</ol>
   <p class="svc3-list-note">Tell us what you want when you book and we will quote it all together.</p></div>
 </div></div></section>
 <section class="svc3-section" id="process"><div class="svc3-wrap"><div class="svc3-process-grid">
-  <div class="svc3-process-intro"><div class="svc3-eyebrow">How We Work</div><h2 class="svc3-h2">The order matters.</h2>
+  <div class="svc3-process-intro"><h2 class="svc3-h2">How We Do It</h2>
   <p>We follow the same sequence on every {e(n)} at our Arlington shop, because skipped prep shows in the finish.</p></div>
   <div class="svc3-timeline">{steps}</div>
 </div></div></section>
-<section class="svc3-section" id="specs"><div class="svc3-wrap"><div class="svc3-eyebrow">At a Glance</div><h2 class="svc3-h2">What you&rsquo;re booking.</h2><div class="svc3-specs">{specs}</div></div></section>
+<section class="svc3-section" id="specs"><div class="svc3-wrap"><h2 class="svc3-h2">Service Details</h2><div class="svc3-specs">{specs}</div></div></section>
 <section class="svc3-section" id="switcher"><div class="svc3-wrap"><div class="svc3-switcher-label">Explore other services</div><div class="svc3-switcher">{switch}</div></div></section>
 {faq_block(n + " Questions", "What Arlington drivers ask us most.", s["faqs"])}
-<section class="svc3-cta"><div class="svc3-wrap"><div class="svc3-eyebrow">Arlington, VA</div><h2>Book your<br>{e(n)}.</h2>
+<section class="svc3-cta"><div class="svc3-wrap"><h2>Book {e(n)}</h2>
 <p>Call the shop or send a quote request with your year, make and model.</p>
 <div class="svc3-cta-row"><a href="/contact/#quote" class="svc3-btn svc3-btn-primary">Get a Quote {ARROW}</a><a href="tel:{PHONE_TEL}" class="svc3-btn svc3-btn-ghost">Call {PHONE_DISPLAY}</a></div></div></section>
 </main>
@@ -515,9 +508,9 @@ def price_label(s):
 def build_areas():
     grid = "".join(
         f'<a class="ar-card fade-up" href="/areas/{a["slug"]}/"><h3>{e(a["name"])}</h3><p>{e(a["card"])}</p><span>Learn More {ARROW}</span></a>' for a in AREAS)
-    body = "<main>" + page_hero([("Home", "/"), ("Service Areas", None)], 'Detailing Near <span class="light">You</span>',
+    body = "<main>" + page_hero([("Home", "/"), ("Service Areas", None)], 'Service Areas',
         "Pristine Auto Detailing is a drop-off shop in North Arlington. These are the neighborhoods and towns we serve most.", "wheel") + f"""
-<section class="section"><h2 class="section-heading">Where Our Customers Come From</h2><p class="section-sub">All detailing happens at our shop at {STREET}.</p><div class="ar-grid">{grid}</div></section>{cta()}</main>
+<section class="section"><h2 class="section-heading">Areas We Serve</h2><p class="section-sub">All detailing happens at our shop at {STREET}.</p><div class="ar-grid">{grid}</div></section>{cta()}</main>
 """
     write("/areas/", "Service Areas | Pristine Auto Detailing Arlington",
           "Auto detailing for drivers across Arlington, Ballston, Clarendon, Rosslyn, Cherrydale, McLean and Falls Church, at our North Arlington shop.",
@@ -527,10 +520,10 @@ def build_areas():
         paras = "".join(f"<p>{e(p)}</p>" for p in a["body"])
         others = "".join(f'<a href="/areas/{o["slug"]}/" class="{"current" if o["slug"]==a["slug"] else ""}">{e(o["name"])}</a>' for o in AREAS)
         b = "<main>" + page_hero([("Home", "/"), ("Service Areas", "/areas/"), (a["name"], None)],
-            f'Auto Detailing Near <span class="light">{e(a["name"])}</span>', a["lede"], a["img"]) + f"""
-<section class="svc3-section svc3-mix"><div class="svc3-wrap"><div class="svc3-mix-head"><div class="svc3-eyebrow">{e(a['name'])}</div><h2 class="svc3-mix-h2">{e(a['headline'])}</h2></div>
+            f'Car Detailing Near {e(a["name"])}', a["lede"], a["img"]) + f"""
+<section class="svc3-section svc3-mix"><div class="svc3-wrap"><div class="svc3-mix-head"><h2 class="svc3-mix-h2">{e(a['headline'])}</h2></div>
 <div class="svc3-mix-row"><div class="svc3-mix-text">{paras}</div><div class="svc3-mix-media"><img src="/assets/img/{a['img2']}.jpg" alt="{e(a['alt'])}" loading="lazy"></div></div></div></section>
-<section class="section pk-section"><div class="section-label">Packages</div><h2 class="section-heading">Detailing Packages for {e(a['name'])} Drivers</h2><p class="section-sub">The same posted prices for every customer.</p>{package_cards()}</section>
+<section class="section pk-section"><h2 class="section-heading">Detailing Packages for {e(a['name'])} Drivers</h2><p class="section-sub">The same posted prices for every customer.</p>{package_cards()}</section>
 {faq_block("Detailing Questions from " + a["name"], "A few things drivers ask us.", a["faqs"])}
 <section class="svc3-section" id="switcher"><div class="svc3-wrap"><div class="svc3-switcher-label">Other areas we serve</div><div class="svc3-switcher">{others}</div></div></section>
 {cta(p="Drop off at our North Arlington shop.")}</main>
@@ -540,10 +533,10 @@ def build_areas():
 
 def build_blog():
     grid = "".join(
-        f'<a class="bl-card fade-up" href="/blog/{p["slug"]}/"><img src="/assets/img/{p["img"]}.jpg" alt="{e(p["alt"])}" loading="lazy"><div><span>{e(p["cat"])}</span><h2>{e(p["h1"])}</h2><p>{e(p["desc"])}</p></div></a>' for p in POSTS)
-    body = "<main>" + page_hero([("Home", "/"), ("Blog", None)], 'Detailing <span class="light">Guides</span>',
+        f'<a class="bl-card fade-up" href="/blog/{p["slug"]}/"><img src="/assets/img/{p["img"]}.jpg" alt="{e(p["alt"])}" loading="lazy"><div><span>{e(p["cat"])}</span><h3>{e(p["h1"])}</h3><p>{e(p["desc"])}</p></div></a>' for p in POSTS)
+    body = "<main>" + page_hero([("Home", "/"), ("Blog", None)], 'Car Care Guides',
         "Plain advice on keeping a car clean in Northern Virginia, from the team at Pristine Auto Detailing.", "beads", ctas=False) + f"""
-<section class="section"><div class="bl-grid">{grid}</div></section>{cta()}</main>
+<section class="section"><h2 class="section-heading">Latest Guides</h2><div class="bl-grid">{grid}</div></section>{cta()}</main>
 """
     write("/blog/", "Car Care Blog | Pristine Auto Detailing Arlington",
           "Car detailing guides for Northern Virginia drivers: pricing, how often to detail, winter salt, pollen and getting a car ready to sell.",
@@ -554,7 +547,7 @@ def build_blog():
             f"<h2>{e(x[1:])}</h2>" if x.startswith("#") else f"<p>{e(x)}</p>" for x in p["body"])
         links = "".join(f'<li><a href="/services/{s}/">{e(n)}</a></li>' for s, n in p["links"])
         b = f"""<main><section class="post-hero"><div class="post-crumbs"><a href="/">Home</a> / <a href="/blog/">Blog</a> / {e(p['cat'])}</div>
-<h1>{e(p['h1'])}</h1><div class="post-meta"><span>{e(p['cat'])}</span><span>Updated November 2026</span></div></section>
+<h1 class="page-title">{e(p['h1'])}</h1><div class="post-meta"><span>{e(p['cat'])}</span><span>Updated November 2026</span></div></section>
 <article class="post-body"><img class="post-img" src="/assets/img/{p['img']}.jpg" alt="{e(p['alt'])}" width="1200" height="800">{content}
 <h2>Related services</h2><ul>{links}</ul></article>{cta()}</main>
 """
@@ -572,14 +565,14 @@ def build_about():
             ("Great Prices and Value", "Every package price is posted, so you know the cost before you call."),
             ("Customer Satisfaction", "We walk the car with you at pickup so you can see the work for yourself.")]
     g = "".join(f'<div class="th-card fade-up"><h3>{e(t)}</h3><p>{e(d)}</p></div>' for t, d in vals)
-    body = "<main>" + page_hero([("Home", "/"), ("About", None)], 'About <span class="light">Pristine</span>',
+    body = "<main>" + page_hero([("Home", "/"), ("About", None)], 'About Pristine Auto Detailing',
         "The detailing side of TAB Motors, at the same North Arlington shop.", "polish") + f"""
-<section class="svc3-section svc3-mix"><div class="svc3-wrap"><div class="svc3-mix-head"><div class="svc3-eyebrow">Our Story</div><h2 class="svc3-mix-h2">A detailing shop with a real repair shop behind it.</h2></div>
+<section class="svc3-section svc3-mix"><div class="svc3-wrap"><div class="svc3-mix-head"><h2 class="svc3-mix-h2">Part of TAB Motors</h2></div>
 <div class="svc3-mix-row"><div class="svc3-mix-text">
 <p>{NAME} is the detailing division of TAB Motors, the AAA Approved Auto Repair shop at {STREET} in Arlington. Our neighbors already trust the shop with brakes and state inspections. Now the same location handles the look and feel of the car too.</p>
 <p>We built the service around one idea: nobody should have to guess what a detail costs. Every package is listed by vehicle size with the time it takes, and every add-on has a posted range. You pick what the car needs, drop it off, and pick it up clean.</p>
 </div><div class="svc3-mix-media"><img src="/assets/img/shop-front.jpg" alt="TAB Motors shop on Old Dominion Dr in Arlington, VA, home of Pristine Auto Detailing Arlington" loading="lazy"></div></div></div></section>
-<section class="section"><div class="section-label">What You Can Expect</div><h2 class="section-heading">Why Drivers Choose Us</h2><div class="th-grid">{g}</div></section>
+<section class="section"><h2 class="section-heading">Why Drivers Choose Us</h2><div class="th-grid">{g}</div></section>
 {cta()}</main>
 """
     write("/about/", "About Pristine Auto Detailing Arlington | By TAB Motors",
@@ -589,7 +582,7 @@ def build_about():
 
 def build_contact():
     hours = "".join(f"<div><span>{d}</span><span>{h}</span></div>" for d, h in HOURS)
-    body = "<main>" + page_hero([("Home", "/"), ("Contact", None)], 'Book Your <span class="light">Detail</span>',
+    body = "<main>" + page_hero([("Home", "/"), ("Contact", None)], 'Book a Detail',
         "Call the shop or send a quote request. Tell us the vehicle and package and we will take it from there.", "foam") + quote_section() + f"""
 <section class="section ct-grid">
   <div class="ct-card"><h2>Call</h2><a href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a></div>
@@ -622,7 +615,7 @@ def write_extras():
     with open(os.path.join(OUT, "site.webmanifest"), "w", encoding="utf-8", newline="\n") as f:
         json.dump(manifest, f, indent=2)
     nf = re.sub(r'<link rel="canonical"[^>]*>\n', "", head("/404/", "Page Not Found | Pristine Auto Detailing", "That page does not exist.", [], image="og/home.jpg")).replace(
-        'content="index, follow, max-image-preview:large"', 'content="noindex"') + nav() + f"""<main><section class="section nf"><h1 class="section-heading">Page Not Found</h1>
+        'content="index, follow, max-image-preview:large"', 'content="noindex"') + nav() + f"""<main><section class="section nf"><h1 class="page-title">Page Not Found</h1>
 <p class="section-sub">That page does not exist. Try our <a href="/services/">services</a> or call {PHONE_DISPLAY}.</p></section></main>""" + footer()
     with open(os.path.join(OUT, "404.html"), "w", encoding="utf-8", newline="\n") as f:
         f.write(nf)

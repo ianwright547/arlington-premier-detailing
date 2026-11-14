@@ -603,7 +603,7 @@ img { max-width: 100%; display: block; }
   color: rgba(30, 155, 240, 0.15);
   line-height: 1; margin-bottom: 16px;
 }
-.process-step h4 {
+.process-step h3 {
   font-family: var(--font-display);
   font-size: 18px; font-weight: 600;
   text-transform: uppercase;
@@ -635,7 +635,7 @@ img { max-width: 100%; display: block; }
 }
 .footer-brand .footer-logo span { color: var(--accent); }
 .footer-brand p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; max-width: 320px; font-weight: 300; }
-.footer-col h5 {
+.footer-col h2 {
   font-family: var(--font-condensed);
   font-size: 13px; font-weight: 600;
   letter-spacing: 2px; text-transform: uppercase;
@@ -1511,7 +1511,7 @@ img { max-width: 100%; display: block; }
   grid-template-columns: 1.4fr 1fr;
   gap: clamp(40px, 6vw, 90px);
 }
-.svc3-list-col h3 {
+.svc3-list-col h2 {
   font-family: var(--font-display);
   font-size: clamp(28px, 3.4vw, 44px);
   font-weight: 700; line-height: 1.0;
@@ -1606,7 +1606,7 @@ img { max-width: 100%; display: block; }
   letter-spacing: -0.02em;
   font-variant-numeric: tabular-nums;
 }
-.svc3-step h4 {
+.svc3-step h3 {
   font-family: var(--font-display);
   font-size: clamp(18px, 1.4vw, 22px);
   font-weight: 600; line-height: 1.2;
@@ -2913,7 +2913,7 @@ img { max-width: 100%; display: block; }
   margin-top: 36px;
   padding-top: 22px;
 }
-.svc3-list-col h3 {
+.svc3-list-col h2 {
   font-size: clamp(20px, 2.2vw, 28px);
   margin: 8px 0 18px;
 }
@@ -2934,7 +2934,7 @@ img { max-width: 100%; display: block; }
   gap: 20px;
 }
 .svc3-step-num { font-size: clamp(28px, 3vw, 40px); }
-.svc3-step h4 { font-size: clamp(16px, 1.25vw, 19px); margin: 2px 0 6px; }
+.svc3-step h3 { font-size: clamp(16px, 1.25vw, 19px); margin: 2px 0 6px; }
 .svc3-step p { font-size: clamp(13.5px, 1vw, 15px); }
 .svc3-process-intro p { font-size: clamp(14px, 1.1vw, 16px); }
 .svc3-specs { padding: 28px 0; }
@@ -2965,7 +2965,7 @@ img { max-width: 100%; display: block; }
   align-items: start;
 }
 #included .svc3-list-label { font-size: 10.5px; letter-spacing: 3px; }
-#included .svc3-list-col h3 {
+#included .svc3-list-col h2 {
   font-family: var(--font-display);
   font-size: clamp(20px, 2.4vw, 30px);
   font-weight: 700;
@@ -3212,7 +3212,7 @@ section[style*="background: #0a0e14"] { background: rgba(11,17,24,0.6) !importan
 }
 #included .svc3-list-col:not(.alt) .svc3-list-label { color: #5cb0e4; }
 #included .svc3-list-col.alt .svc3-list-label { color: #e0b85a; }
-#included .svc3-list-col h3 {
+#included .svc3-list-col h2 {
   font-family: var(--font-display);
   font-size: clamp(22px, 2.4vw, 28px);
   font-weight: 700;
@@ -3449,8 +3449,7 @@ a.service-card { text-decoration: none; color: inherit; }
     ) !important;
   }
   /* Mobile typography polish for hero — tighter, punchier, easier to tap */
-  .hero-content { padding: 96px 20px 48px !important; }
-  .hero h1 { font-size: clamp(34px, 9vw, 56px) !important; line-height: 1.02; letter-spacing: -0.5px; margin-bottom: 12px; text-shadow: 0 2px 8px rgba(0,0,0,0.85), 0 1px 3px rgba(0,0,0,0.9), 0 0 24px rgba(0,0,0,0.55); }
+  .hero h1 { line-height: 1.02; letter-spacing: -0.5px; margin-bottom: 12px; text-shadow: 0 2px 8px rgba(0,0,0,0.85), 0 1px 3px rgba(0,0,0,0.9), 0 0 24px rgba(0,0,0,0.55); }
   .hero-sub { font-size: 16px !important; line-height: 1.55 !important; max-width: 100% !important; margin-bottom: 24px !important; }
   .hero-badge { display: none !important; }
   .hero-ctas { gap: 12px !important; }
@@ -3596,8 +3595,7 @@ a.service-card { text-decoration: none; color: inherit; }
 }
 
 /* Give hero room for the reviews band */
-.hero { padding-bottom: 12px !important; }
-@media (max-width: 768px) { .hero { padding-bottom: 4px !important; } }
+
 
 /* ============ BRAND MARQUEE (standalone section below hero) ============ */
 .brand-strip {
@@ -3680,13 +3678,12 @@ a.service-card { text-decoration: none; color: inherit; }
   overflow: hidden;
   background: #0a0e14 !important;
   border-top: none !important;
-  padding: 110px 24px !important;
+  padding: var(--section-space) var(--page-gutter);
   scroll-margin-top: 88px; /* keeps anchor jumps clear of fixed nav */
 }
 /* (noise + accent line removed — minimal is more)*/
 @media (max-width: 640px) {
-  /* Extra bottom padding so the form clears the persistent mobile-bar (call/quote) */
-  #quote.quote-section { padding: 56px 16px 120px !important; scroll-margin-top: 72px; }
+  #quote.quote-section { scroll-margin-top: 72px; }
 }
 /* Animated gradient orbs */
 #quote.quote-section::before,

@@ -16,7 +16,6 @@ W, H = 1200, 630
 PAD = 56
 BLUE = (30, 155, 240)
 NAVY = (5, 8, 13)
-SHORT = {"/": "Professional Auto Detailing"}
 
 
 def font(size):
@@ -90,7 +89,7 @@ def main():
         path = "/" if rel == "." else f"/{rel}/"
         h = open(fp, encoding="utf-8").read()
         h1 = re.search(r"<h1[^>]*>(.*?)</h1>", h, re.S).group(1)
-        title = SHORT.get(path, html.unescape(re.sub(r"<[^>]+>", " ", h1)))
+        title = html.unescape(re.sub(r"<[^>]+>", " ", h1))
         title = re.sub(r"\s+", " ", title).strip()
         img = re.search(r"/assets/img/([\w-]+\.jpg)", h[h.find("<main"):]).group(1)
         slug = path.strip("/").replace("/", "-") or "home"
